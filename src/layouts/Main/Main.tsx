@@ -1,13 +1,14 @@
 import { FunctionComponent, ReactNode } from "react";
 import Link from "next/link";
 
+import useAuth from "src/hooks/useAuth";
+
 interface IProps {
   main: ReactNode;
 }
 
 const MainLayout: FunctionComponent<IProps> = ({ main }) => {
-  const authenticated = false;
-  const logout = () => null;
+  const { authenticated, logout } = useAuth();
 
   return (
     <div className="bg-gray-900 m-w-screen-2xl mx-auto text-white">
