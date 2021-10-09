@@ -1,10 +1,10 @@
-import { useEffect, useState, FunctionComponent, createContext } from "react";
+import { useEffect, useState, FunctionComponent } from "react";
 
 import { useRouter } from "next/router";
 
 import firebase from "firebase/app";
 import "firebase/auth";
-import initFirebase from "src/auth/initFirebase";
+import initFirebase from "src/firebase/initFirebase";
 
 import { UserType } from "./authTypes";
 
@@ -22,6 +22,17 @@ const AuthProvider: FunctionComponent = ({ children }) => {
     try {
       await firebase.auth().signOut();
       router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const login = async (email: string, password: string) => {
+    try {
+      const response = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
+      console.log(response);
     } catch (error) {
       console.error(error);
     }
@@ -47,7 +58,9 @@ const AuthProvider: FunctionComponent = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, logout, authenticated: !!user }}>
+    <AuthContext.Provider
+      value={{ user, logout, login, authenticated: !!user }}
+    >
       {children}
     </AuthContext.Provider>
   );
