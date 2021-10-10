@@ -32,7 +32,6 @@ const AuthProvider: FunctionComponent = ({ children }) => {
       const response = await firebase
         .auth()
         .signInWithEmailAndPassword(email, password);
-      console.log(response);
     } catch (error) {
       console.error(error);
     }
