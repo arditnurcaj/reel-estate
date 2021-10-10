@@ -21,7 +21,7 @@ const AuthProvider: FunctionComponent = ({ children }) => {
   const logout = async () => {
     try {
       await firebase.auth().signOut();
-      router.push("/");
+      router.push("/auth");
     } catch (error) {
       console.error(error);
     }
@@ -29,9 +29,8 @@ const AuthProvider: FunctionComponent = ({ children }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password);
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      router.push("/");
     } catch (error) {
       console.error(error);
     }

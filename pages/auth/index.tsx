@@ -1,7 +1,11 @@
+import { GetServerSideProps, NextApiRequest } from "next";
+
 import { AuthLayout } from "src/layouts/";
+import loadIdToken from "src/utils/loadIdToken";
+
 import { LoginForm } from "./components";
 
-export default function Auth() {
+const Auth = () => {
   return (
     <AuthLayout
       main={
@@ -11,4 +15,17 @@ export default function Auth() {
       }
     />
   );
-}
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const uid = await loadIdToken(req as NextApiRequest);
+
+  if (uid) {
+    res.setHeader("location", "/");
+    res.end();
+  }
+
+  return { props: {} };
+};
+
+export default Auth;

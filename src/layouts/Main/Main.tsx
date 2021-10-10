@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const MainLayout: FunctionComponent<IProps> = ({ main }) => {
-  const { authenticated, logout } = useAuth();
+  const { logout } = useAuth();
 
   return (
     <div className="bg-gray-900 m-w-screen-2xl mx-auto text-white">
@@ -23,18 +23,10 @@ const MainLayout: FunctionComponent<IProps> = ({ main }) => {
               />
             </a>
           </Link>
-          {authenticated ? (
-            <>
-              <Link href="/">
-                <a>Add House</a>
-              </Link>
-              <button onClick={logout}>Logout</button>
-            </>
-          ) : (
-            <Link href="/auth">
-              <a>Login/Signup</a>
-            </Link>
-          )}
+          <Link href="/">
+            <a>Add House</a>
+          </Link>
+          <button onClick={logout}>Logout</button>
         </div>
       </nav>
       <main style={{ height: "calc(100vh - 64px)" }}>{main}</main>
