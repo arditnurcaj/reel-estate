@@ -1,10 +1,27 @@
 import { GetServerSideProps, NextApiRequest } from "next";
 import { MainLayout } from "src/layouts";
+import { Map } from "src/components";
 
 import loadIdToken from "src/utils/loadIdToken";
 
 const Home = () => {
-  return <MainLayout main={<div>Home</div>} />;
+  return (
+    <MainLayout
+      main={
+        <div className="flex">
+          <div
+            className="w-1/2 pb-4"
+            style={{ maxHeight: "calc(100vh - 64px)", overflowX: "scroll" }}
+          >
+            HouseList
+          </div>
+          <div className="w-1/2">
+            <Map />
+          </div>
+        </div>
+      }
+    />
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
