@@ -16,6 +16,7 @@ initFirebase();
 
 const AuthProvider: FunctionComponent = ({ children }) => {
   const [user, setUser] = useState<UserType>(null);
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
   const router = useRouter();
 
   const logout = async () => {
@@ -28,11 +29,14 @@ const AuthProvider: FunctionComponent = ({ children }) => {
   };
 
   const login = async (email: string, password: string) => {
+    setIsAuthenticating(true);
+
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
+      setIsAuthenticating(false);
       router.push("/");
     } catch (error) {
-      console.error(error);
+      setIsAuthenticating(false);
     }
   };
 
@@ -57,7 +61,7 @@ const AuthProvider: FunctionComponent = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, logout, login, authenticated: !!user }}
+      value={{ user, logout, login, authenticated: !!user, isAuthenticating }}
     >
       {children}
     </AuthContext.Provider>

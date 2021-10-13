@@ -7,6 +7,7 @@ const AuthContext = createContext<IAuthContext>({
   logout: () => null,
   authenticated: false,
   login: () => null,
+  isAuthenticating: false,
 });
 
 export default AuthContext;

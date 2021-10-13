@@ -9,7 +9,7 @@ type FormData = {
 };
 
 const LoginForm = () => {
-  const { login } = useContext(authContext);
+  const { login, isAuthenticating } = useContext(authContext);
 
   const {
     handleSubmit,
@@ -60,8 +60,9 @@ const LoginForm = () => {
           <button
             type="submit"
             className="text-lg w-full px-3 py-2 bg-gray-600 rounded"
+            disabled={isAuthenticating}
           >
-            Submit
+            {isAuthenticating ? "Loading..." : "Submit"}
           </button>
         </div>
       </form>
