@@ -16,6 +16,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.2.5",
+    "@chakra-ui/react": "^1.6.10",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@prisma/client": "~2.11.0",
     "@reach/combobox": "^0.11.2",
     "apollo-server-micro": "^2.19.0",
@@ -26,6 +29,7 @@
     "deepmerge": "^4.2.2",
     "firebase": "^8.0.2",
     "firebase-admin": "^9.4.1",
+    "framer-motion": "^4",
     "geolib": "^3.3.1",
     "graphql": "^15.4.0",
     "js-cookie": "^2.2.1",

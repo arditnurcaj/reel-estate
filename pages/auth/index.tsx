@@ -1,17 +1,18 @@
 import { GetServerSideProps, NextApiRequest } from "next";
 
 import { AuthLayout } from "src/layouts/";
-import loadIdToken from "src/utils/loadIdToken";
-
+import { Box } from "@chakra-ui/react";
 import { LoginForm } from "./components";
+
+import loadIdToken from "src/utils/loadIdToken";
 
 const Auth = () => {
   return (
     <AuthLayout
       main={
-        <div className="py-4 px-10 h-full">
+        <Box py={4} px={10} h="full">
           <LoginForm />
-        </div>
+        </Box>
       }
     />
   );

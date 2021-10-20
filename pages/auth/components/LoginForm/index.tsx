@@ -1,6 +1,16 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 
+import {
+  Box,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  FormErrorMessage,
+  Button,
+} from "@chakra-ui/react";
+
 import authContext from "src/contexts/auth/authContext";
 
 type FormData = {
@@ -24,49 +34,51 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex items-center text-white h-full">
+    <Flex alignItems="center" textColor="white" h="full">
       <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-        <div className="mb-5 max-w-md mx-auto">
-          <label htmlFor="login-email">Email</label>
-          <input
-            className={`block w-full bg-transparent border rounded-md text-lg px-3 py-2 my-1 focus:outline-none ${
-              errors.email && "border-red-500 text-red-500"
-            }`}
-            type="text"
-            id="login-email"
-            {...register("email", { required: true })}
-          />
-          {errors.email && (
-            <span className="text-red-500">This field is required</span>
-          )}
-        </div>
+        <Box mb={5} maxW="md" mx="auto">
+          <FormControl isInvalid={!!errors.email}>
+            <FormLabel htmlFor="email">Email</FormLabel>
+            <Input
+              id="email"
+              placeholder="Email"
+              size="lg"
+              {...register("email", {
+                required: "This is required",
+              })}
+            />
+            <FormErrorMessage>
+              {errors.email && errors.email.message}
+            </FormErrorMessage>
+          </FormControl>
+        </Box>
 
-        <div className="mb-8 max-w-md mx-auto">
-          <label htmlFor="login-password">Password</label>
-          <input
-            className={`block w-full bg-transparent border rounded-md text-lg px-3 py-2 my-1 focus:outline-none ${
-              errors.password && "border-red-500 text-red-500"
-            }`}
-            type="password"
-            id="login-password"
-            {...register("password", { required: true })}
-          />
-          {errors.email && (
-            <span className="text-red-500">This field is required</span>
-          )}
-        </div>
+        <Box mb={8} maxW="md" mx="auto">
+          <FormControl isInvalid={!!errors.password}>
+            <FormLabel htmlFor="password">Password</FormLabel>
+            <Input
+              id="password"
+              placeholder="Password"
+              type="password"
+              size="lg"
+              {...register("password", {
+                required: "This is required",
+                minLength: { value: 8, message: "Minimum length should be 8" },
+              })}
+            />
+            <FormErrorMessage>
+              {errors.password && errors.password.message}
+            </FormErrorMessage>
+          </FormControl>
+        </Box>
 
-        <div className="w-full mx-auto max-w-md">
-          <button
-            type="submit"
-            className="text-lg w-full px-3 py-2 bg-gray-600 rounded"
-            disabled={isAuthenticating}
-          >
+        <Box w="full" mx="auto" maxW="md">
+          <Button size="lg" w="full" type="submit" disabled={isAuthenticating}>
             {isAuthenticating ? "Loading..." : "Submit"}
-          </button>
-        </div>
+          </Button>
+        </Box>
       </form>
-    </div>
+    </Flex>
   );
 };
 

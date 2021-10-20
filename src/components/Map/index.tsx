@@ -9,8 +9,8 @@ interface IProps {}
 const Map = ({}: IProps) => {
   const mapRef = useRef<MapRef | null>(null);
   const [viewport, setViewport] = useState<ViewState>({
-    latitude: 43,
-    longitude: -79,
+    latitude: 42.6629,
+    longitude: 21.1655,
     zoom: 10,
   });
 
