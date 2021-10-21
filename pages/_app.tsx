@@ -6,8 +6,6 @@ import { AuthProvider } from "src/contexts";
 
 import theme from "src/theme";
 
-import "styles/index.css";
-
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
