@@ -1,5 +1,7 @@
 import { FunctionComponent, ReactNode } from "react";
-import Link from "next/link";
+import NextLink from "next/link";
+
+import { Box, Image, Flex, Button, Link } from "@chakra-ui/react";
 
 import useAuth from "src/hooks/useAuth";
 
@@ -11,26 +13,31 @@ const MainLayout: FunctionComponent<IProps> = ({ main }) => {
   const { logout } = useAuth();
 
   return (
-    <div className="bg-gray-900 m-w-screen-2xl mx-auto text-white">
-      <nav className="bg-gray-800" style={{ height: "64px" }}>
-        <div className="px-6 flex items-center justify-between h-16">
-          <Link href="/">
+    <Box bg="gray.900" mx="auto" textColor="white">
+      <Box as="nav" bg="gray.800" h="64px">
+        <Flex px={6} alignItems="center" justify="space-between" h={16}>
+          <Link as={NextLink} href="/">
             <a>
-              <img
+              <Image
                 src="/home-color.svg"
                 alt="home house"
-                className="inline w-6"
+                display="inline"
+                w={6}
               />
             </a>
           </Link>
-          <Link href="/">
+          <Link as={NextLink} href="/">
             <a>Add House</a>
           </Link>
-          <button onClick={logout}>Logout</button>
-        </div>
-      </nav>
-      <main style={{ height: "calc(100vh - 64px)" }}>{main}</main>
-    </div>
+          <Button variant="unstyled" onClick={logout}>
+            Logout
+          </Button>
+        </Flex>
+      </Box>
+      <Box as="main" h="calc(100vh - 64px)">
+        {main}
+      </Box>
+    </Box>
   );
 };
 

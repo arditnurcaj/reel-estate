@@ -1,4 +1,6 @@
 import { GetServerSideProps, NextApiRequest } from "next";
+
+import { Box, Flex } from "@chakra-ui/react";
 import { MainLayout } from "src/layouts";
 import { Map } from "src/components";
 
@@ -8,17 +10,14 @@ const Home = () => {
   return (
     <MainLayout
       main={
-        <div className="flex">
-          <div
-            className="w-1/2 pb-4"
-            style={{ maxHeight: "calc(100vh - 64px)", overflowX: "scroll" }}
-          >
+        <Flex>
+          <Box w="50%" maxH="calc(100vh - 64px)" overflowX="scroll">
             HouseList
-          </div>
-          <div className="w-1/2">
+          </Box>
+          <Box w="50%">
             <Map />
-          </div>
-        </div>
+          </Box>
+        </Flex>
       }
     />
   );

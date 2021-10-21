@@ -1,21 +1,26 @@
 import { FunctionComponent, ReactNode } from "react";
 
+import { Box, Flex, Image } from "@chakra-ui/react";
+
 interface IProps {
   main: ReactNode;
 }
 
 const AuthLayout: FunctionComponent<IProps> = ({ main }) => {
   return (
-    <div className="flex text-white h-screen overflow-y-hidden">
-      <div className="hidden md:block flex-1">
-        <img
-          className="w-full h-full object-cover"
+    <Flex color="white" h="100vh" overflowY="hidden">
+      <Box display={{ base: "none", md: "block" }} flex="1">
+        <Image
           src="/splash-wallpaper.jpg"
           alt="Splash"
+          objectPosition="cover"
+          objectFit="cover"
+          w="full"
+          h="full"
         />
-      </div>
-      <div className="flex-1">{main}</div>
-    </div>
+      </Box>
+      <Box flex="1">{main}</Box>
+    </Flex>
   );
 };
 

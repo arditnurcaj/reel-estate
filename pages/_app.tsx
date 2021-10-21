@@ -10,14 +10,14 @@ import "styles/index.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AuthProvider>
-      <Head>
-        <title>Reel Estate</title>
-      </Head>
+    <ChakraProvider theme={theme}>
+      <AuthProvider>
+        <Head>
+          <title>Reel Estate</title>
+        </Head>
 
-      <ChakraProvider theme={theme}>
         <Component {...pageProps} />
-      </ChakraProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </ChakraProvider>
   );
 }

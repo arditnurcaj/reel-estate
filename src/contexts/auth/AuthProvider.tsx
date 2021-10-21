@@ -1,5 +1,5 @@
 import { useEffect, useState, FunctionComponent } from "react";
-
+import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 import firebase from "firebase/app";
@@ -18,6 +18,7 @@ const AuthProvider: FunctionComponent = ({ children }) => {
   const [user, setUser] = useState<UserType>(null);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const router = useRouter();
+  const toast = useToast();
 
   const logout = async () => {
     try {
@@ -37,6 +38,16 @@ const AuthProvider: FunctionComponent = ({ children }) => {
       router.push("/");
     } catch (error) {
       setIsAuthenticating(false);
+      toast({
+        title: "Error",
+        description:
+          "There was an error during authentication, please try again or check the credentials",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        variant: "solid",
+        position: "top",
+      });
     }
   };
 

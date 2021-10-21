@@ -35,7 +35,7 @@ const LoginForm = () => {
 
   return (
     <Flex alignItems="center" textColor="white" h="full">
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+      <Box as="form" onSubmit={handleSubmit(onSubmit)} w="full">
         <Box mb={5} maxW="md" mx="auto">
           <FormControl isInvalid={!!errors.email}>
             <FormLabel htmlFor="email">Email</FormLabel>
@@ -44,7 +44,7 @@ const LoginForm = () => {
               placeholder="Email"
               size="lg"
               {...register("email", {
-                required: "This is required",
+                required: "Field is required",
               })}
             />
             <FormErrorMessage>
@@ -62,7 +62,7 @@ const LoginForm = () => {
               type="password"
               size="lg"
               {...register("password", {
-                required: "This is required",
+                required: "Field is required",
                 minLength: { value: 8, message: "Minimum length should be 8" },
               })}
             />
@@ -73,11 +73,18 @@ const LoginForm = () => {
         </Box>
 
         <Box w="full" mx="auto" maxW="md">
-          <Button size="lg" w="full" type="submit" disabled={isAuthenticating}>
-            {isAuthenticating ? "Loading..." : "Submit"}
+          <Button
+            isLoading={isAuthenticating}
+            loadingText="Logging In"
+            size="lg"
+            w="full"
+            type="submit"
+            disabled={isAuthenticating}
+          >
+            Login
           </Button>
         </Box>
-      </form>
+      </Box>
     </Flex>
   );
 };
