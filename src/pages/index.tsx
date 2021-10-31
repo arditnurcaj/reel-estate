@@ -1,26 +1,12 @@
 import { GetServerSideProps, NextApiRequest } from "next";
 
-import { Box, Flex } from "@chakra-ui/react";
 import { MainLayout } from "src/layouts";
-import { Map } from "src/components";
+import HousesFeature from "src/features/houses";
 
 import loadIdToken from "src/utils/loadIdToken";
 
 const Home = () => {
-  return (
-    <MainLayout
-      main={
-        <Flex>
-          <Box w="50%" maxH="calc(100vh - 64px)" overflowX="scroll">
-            HouseList
-          </Box>
-          <Box w="50%">
-            <Map />
-          </Box>
-        </Flex>
-      }
-    />
-  );
+  return <MainLayout main={<HousesFeature />} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {

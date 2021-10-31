@@ -1,22 +1,11 @@
 import { GetServerSideProps, NextApiRequest } from "next";
 
-import { AuthLayout } from "src/layouts/";
-import { Box } from "@chakra-ui/react";
-import { LoginForm } from "./components";
+import { AuthLayout } from "src/layouts";
+import AuthFeature from "src/features/auth";
 
 import loadIdToken from "src/utils/loadIdToken";
 
-const Auth = () => {
-  return (
-    <AuthLayout
-      main={
-        <Box py={4} px={10} h="full">
-          <LoginForm />
-        </Box>
-      }
-    />
-  );
-};
+const Auth = () => <AuthLayout main={<AuthFeature />} />;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const uid = await loadIdToken(req as NextApiRequest);
