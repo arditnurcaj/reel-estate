@@ -1,11 +1,13 @@
 import { Box, Flex } from "@chakra-ui/react";
 
-import { IconButton } from "@chakra-ui/react";
+import { IconButton, useDisclosure } from "@chakra-ui/react";
 import { MdAdd } from "react-icons/md";
 
-import { Map } from "./components";
+import { Map, HouseDetails } from "./components";
 
 const Houses = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Flex>
@@ -26,7 +28,9 @@ const Houses = () => {
         bottom="2.5rem"
         right="1.5rem"
         zIndex={1}
+        onClick={onOpen}
       />
+      <HouseDetails isOpen={isOpen} onClose={onClose} editMode={false} />
     </>
   );
 };

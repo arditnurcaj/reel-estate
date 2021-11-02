@@ -79,6 +79,7 @@ const LoginForm = () => {
             size="lg"
             w="full"
             type="submit"
+            colorScheme="blue"
             disabled={isAuthenticating}
           >
             Login
