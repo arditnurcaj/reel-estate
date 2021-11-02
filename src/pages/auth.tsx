@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextApiRequest } from "next";
 
 import { AuthLayout } from "src/layouts";
-import AuthFeature from "src/features/auth";
+import AuthFeature from "src/features/Auth";
 
 import loadIdToken from "src/utils/loadIdToken";
 

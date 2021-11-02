@@ -1,12 +1,12 @@
 import { GetServerSideProps, NextApiRequest } from "next";
 
 import { MainLayout } from "src/layouts";
-import HousesFeature from "src/features/houses";
+import HousesFeature from "src/features/Houses";
 
 import loadIdToken from "src/utils/loadIdToken";
 
 const Home = () => {
-  return <MainLayout main={<HousesFeature />} />;
+  return <MainLayout main={<HousesFeature />} title="Houses" />;
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
